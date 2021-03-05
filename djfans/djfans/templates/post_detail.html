@@ -1,0 +1,92 @@
+{% load static %} {% extends 'base.html' %} {% block content %}
+<div class="col s12 m12">
+  <div class="card">
+    <div class="card-image">
+      <img src="images/sample-1.jpg" />
+      <a class="btn-floating halfway-fab waves-effect waves-light red"
+        ><i class="material-icons">favorite</i></a
+      >
+    </div>
+
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img src="images/yuna.jpg" alt="" class="circle" />
+        <span style="fond-size: 20px;, fond-weight: bold;" class="title"
+          >Name</span
+        >
+        <span class="title secondary-content">Date</span>
+        <p>@name</p>
+        <a href="#!" class="secondary-content"
+          ><i class="material-icons">grade</i></a
+        >
+      </li>
+    </ul>
+
+    <div class="card-content">
+      <h4 class="header">Hello, this is my new post</h4>
+      <p>
+        I am a very simple card. I am good at containing small bits of
+        information. I am convenient because I require little markup to use
+        effectively.
+      </p>
+
+      <br />
+
+      <p>
+        I am a very simple card. I am good at containing small bits of
+        information. I am convenient because I require little markup to use
+        effectively.
+      </p>
+    </div>
+
+    <div class="card-action">
+      <a href="#"><i class="material-icons left">thumb_up</i> 1 Likes</a>
+      <a href="#"><i class="material-icons">favorite</i> 2 Favorites</a>
+      <a href="#"><i class="material-icons">comment</i> 3 Comments</a>
+    </div>
+
+    <div class="card-panel">
+      <h5>Comments:</h5>
+      <div class="divider"></div>
+
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="images/yuna.jpg" alt="" class="circle" />
+          <span style="fond-weight: bold;, fond-size: 20px;" class="title"
+            >Name</span
+          >
+          <span class="title secondary-content">Date</span>
+          <p>@name</p>
+          <br />
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo,
+            adipisci.
+          </p>
+        </li>
+      </ul>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">edit</i>
+              <input id="icon_prefix" type="text" class="validate" />
+              <label for="icon_prefix">Comment</label>
+            </div>
+
+            <button
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
