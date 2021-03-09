@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.db.models import Sum
 
 from authy.models import Profile, PeopleList
-# from tier.models import Tier, Subscription
+from tier.models import Tier, Subscription
 # from post.models import PostFileContent, Post
 
 from authy.forms import NewListForm
@@ -49,41 +49,41 @@ def UserProfile(request, username):
     page_type = None
     posts_data = None
 
-    # if request.user != user:
-    #     try:
-    #         # Check if the user is subscribed to the profile
-    #         subscriber_tier = Subscription.objects.get(
-    #             subscriber=request.user, subscribed=user, expired=False)
-    #         # Then we get the tiers of the profile and exclude the tiers that we are currently subscribed
-    #         tiers = Tier.objects.filter(user=user).exclude(
-    #             number=subscriber_tier.tier.number)
-    #         if url == 'profilephotos':
-    #             posts = PostFileContent.objects.filter(user=user, tier__number__lte=subscriber_tier.tier.number).order_by(
-    #                 '-posted').exclude(file__endswith='mp4')
-    #             page_type = 1
-    #         elif url == 'profilevideos':
-    #             posts = PostFileContent.objects.filter(user=user, tier__number__lte=subscriber_tier.tier.number).order_by(
-    #                 '-posted').exclude(file__endswith='jpg')
-    #             page_type = 2
-    #         else:
-    #             posts = Post.objects.filter(
-    #                 user=user, tier__number__lte=subscriber_tier.tier.number).order_by('-posted')
-    #             page_type = 3
-    #     except Exception:
-    #         tiers = Tier.objects.filter(user=user)
-    #         no_a_subscriber = False
-    # else:
-    #     if url == 'profilephotos':
-    #         posts = PostFileContent.objects.filter(user=user).order_by(
-    #             '-posted').exclude(file__endswith='mp4')
-    #         page_type = 1
-    #     elif url == 'profilevideos':
-    #         posts = PostFileContent.objects.filter(user=user).order_by(
-    #             '-posted').exclude(file__endswith='jpg')
-    #         page_type = 2
-    #     else:
-    #         posts = Post.objects.filter(user=user).order_by('-posted')
-    #         page_type = 3
+    if request.user != user:
+        try:
+            # Check if the user is subscribed to the profile
+            subscriber_tier = Subscription.objects.get(
+                subscriber=request.user, subscribed=user, expired=False)
+            # Then we get the tiers of the profile and exclude the tiers that we are currently subscribed
+            tiers = Tier.objects.filter(user=user).exclude(
+                number=subscriber_tier.tier.number)
+            if url == 'profilephotos':
+                posts = PostFileContent.objects.filter(user=user, tier__number__lte=subscriber_tier.tier.number).order_by(
+                    '-posted').exclude(file__endswith='mp4')
+                page_type = 1
+            elif url == 'profilevideos':
+                posts = PostFileContent.objects.filter(user=user, tier__number__lte=subscriber_tier.tier.number).order_by(
+                    '-posted').exclude(file__endswith='jpg')
+                page_type = 2
+            else:
+                posts = Post.objects.filter(
+                    user=user, tier__number__lte=subscriber_tier.tier.number).order_by('-posted')
+                page_type = 3
+        except Exception:
+            tiers = Tier.objects.filter(user=user)
+            no_a_subscriber = False
+    else:
+        if url == 'profilephotos':
+            posts = PostFileContent.objects.filter(user=user).order_by(
+                '-posted').exclude(file__endswith='mp4')
+            page_type = 1
+        elif url == 'profilevideos':
+            posts = PostFileContent.objects.filter(user=user).order_by(
+                '-posted').exclude(file__endswith='jpg')
+            page_type = 2
+        else:
+            posts = Post.objects.filter(user=user).order_by('-posted')
+            page_type = 3
 
     # Pagination
     if posts:

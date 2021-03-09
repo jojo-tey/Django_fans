@@ -58,6 +58,25 @@
       </div>
     </div>
 
+    {% if user.is_authenticated and user != profile.user %}
+        <div class="card-action">
+          <div class="row">
+            {% for tier in tiers %}
+            <div class="col s12 m4">
+              <div class="card-panel center-align">
+              <h3>${{ tier.price }}</h3>
+              <span>{{ tier.description }}</span>
+              <br><br>
+              <a href="{% url 'subscribe' profile.user.username tier.id %}" class="waves-effect waves-light btn amber"><i class="material-icons right">star</i>Subscribe</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    {% endif %}
+
+
+
     <div class="card-tabs">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3"><a href="#test1">Posts</a></li>

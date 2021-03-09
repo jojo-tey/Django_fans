@@ -32,4 +32,4 @@ class Subscription(models.Model):
     expired = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.subscriber.username + '==' + self.subscribed.username + '==  ' + str(self.tier.number)
+        return self.subscriber.username + '==' + self.subscribed.username + '== Tier: ' + str(self.tier.number)

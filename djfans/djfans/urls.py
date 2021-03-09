@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from authy.views import UserProfile
-
+from tier.views import Subscribe
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('sub/', include('tier.urls')),
     path('post/', include('post.urls')),
     path('<username>/', UserProfile, name='profile'),
+    path('<username>/<tier_id>/subscribe', Subscribe, name='subscribe'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
