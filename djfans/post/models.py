@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import uuid
 
+from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
 
 from tier.models import Tier
 # Create your models here.
@@ -24,7 +26,7 @@ class PostFileContent(models.Model):
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    content = models.ManyToManyField(PostFileContent, related_name="contents")
+    content = models.ManyToManyField(PostFileContent, related_name='contents')
     title = models.CharField(max_length=150)
     caption = models.TextField(max_length=1500, verbose_name='Caption')
     posted = models.DateTimeField(auto_now_add=True)
@@ -36,7 +38,7 @@ class Post(models.Model):
     favorites_count = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        return reverse("postdetails", args=[str(self.id)])
+        return reverse('postdetails', args=[str(self.id)])
 
 
 class Stream(models.Model):
@@ -46,6 +48,23 @@ class Stream(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     visible = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
+
+    @receiver(post_save, sender=Post, dispatch_uid='unique_add_post')
+    def add_post(sender, instance, created, **kwargs):
+        post = instance
+        user = post.user
+
+        if created:
+            subscribers = Subscription.objects.all().filter(subscribed=user)
+            for subscriber in subscribers:
+                if(subscriber.tier.number >= post.tier.number):
+                    stream = Stream(post=post, user=subscriber.subscriber,
+                                    date=post.posted, subscribed=user, visible=True)
+                    stream.save()
+                else:
+                    stream = Stream(
+                        post=post, user=subscriber.subscriber, date=post.posted, subscribed=user)
+                    stream.save()
 
 
 class Likes(models.Model):
