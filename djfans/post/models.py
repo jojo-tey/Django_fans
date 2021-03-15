@@ -7,7 +7,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from tier.models import Tier, Subscription
-# from notifications.models import Notification
+from notifications.models import Notification
 # Create your models here.
 
 
@@ -74,21 +74,21 @@ class Likes(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='post_likes')
 
-    # def user_liked_post(sender, instance, *args, **kwargs):
-    #     like = instance
-    #     post = like.post
-    #     sender = like.user
-    #     notify = Notification(post=post, sender=sender,
-    #                           user=post.user, notification_type=1)
-    #     notify.save()
+    def user_liked_post(sender, instance, *args, **kwargs):
+        like = instance
+        post = like.post
+        sender = like.user
+        notify = Notification(post=post, sender=sender,
+                              user=post.user, notification_type=1)
+        notify.save()
 
-    # def user_unlike_post(sender, instance, *args, **kwargs):
-    #     like = instance
-    #     post = like.post
-    #     sender = like.user
-    #     notify = Notification.objects.filter(
-    #         post=post, sender=sender, notification_type=1)
-    #     notify.delete()
+    def user_unlike_post(sender, instance, *args, **kwargs):
+        like = instance
+        post = like.post
+        sender = like.user
+        notify = Notification.objects.filter(
+            post=post, sender=sender, notification_type=1)
+        notify.delete()
 
 
 class Bookmark(models.Model):
@@ -98,5 +98,5 @@ class Bookmark(models.Model):
 
 
 # Signals stuff for Likes:
-# post_save.connect(Likes.user_liked_post, sender=Likes)
-# post_delete.connect(Likes.user_unlike_post, sender=Likes)
+post_save.connect(Likes.user_liked_post, sender=Likes)
+post_delete.connect(Likes.user_unlike_post, sender=Likes)

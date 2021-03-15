@@ -1,15 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.urls import reverse
 
 from post.forms import NewPostForm
+from comment.forms import CommentForm
+
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from post.models import Post, PostFileContent, Stream, Likes, Bookmark
 from tier.models import Tier, Subscription
-
+from comment.models import Comment
 
 # Create your views here.
+
 
 @login_required
 def index(request):
@@ -33,13 +37,30 @@ def PostDetails(request, post_id):
     user = request.user
     post = get_object_or_404(Post, id=post_id)
 
-    # like
+    # Check if the user liked the post
     if Likes.objects.filter(post=post, user=user).exists():
         liked = True
     else:
         liked = False
 
-    # visible
+    # Comment stuff:
+    comments = Comment.objects.filter(post=post).order_by('-date')
+
+    # Comment form
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = user
+            comment.save()
+            post.comments_count += 1
+            post.save()
+            return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+    else:
+        form = CommentForm()
+
+    # To validate that the user can see the post
     if user != post.user:
         subscriber = Subscription.objects.get(
             subscriber=request.user, subscribed=post.user)
@@ -54,11 +75,14 @@ def PostDetails(request, post_id):
         'post': post,
         'visible': visible,
         'liked': liked,
+        'comments': comments,
+        'form': form,
     }
 
     return render(request, 'post_detail.html', context)
 
 
+@login_required
 def NewPost(request):
     user = request.user
     files_objs = []

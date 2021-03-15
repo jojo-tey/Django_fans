@@ -32,36 +32,18 @@
     {% comment %} NAVIGATION {% endcomment %}
 
     <nav class="light-blue" role="navigation">
-      <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo"
-          ><i class="material-icons">cloud</i>DjangoFans</a
-        >
-        <ul class="right hide-on-med-and-down">
-          <li>
-            <a href="#"><i class="material-icons left">home</i>Home</a>
-          </li>
-          <li>
-            <a href="#"
-              ><i class="material-icons left">notifications</i>Notifications</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="material-icons left">add_box</i>Post</a>
-          </li>
-          <li>
-            <a href="#"><i class="material-icons left">message</i>Messages</a>
-          </li>
-          <li>
-            <a
-              href="#"
-              data-target="slide-out"
-              class="sidenav-trigger show-on-large"
-              ><i class="material-icons left">person</i>Profile</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div class="nav-wrapper container">
+      <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">cloud</i>Fans</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
+        <li><a href="{% url 'show-notifications' %}"><i class="material-icons left">notifications</i>Notifications<span class="new badge">{{ count_notifications }}</span></a></li>
+        <li><a href="{% url 'newpost' %}"><i class="material-icons left">add_box</i>Post</a></li>
+        <li><a href="{% url 'newtier' %}"><i class="material-icons left">add_box</i>New tier</a></li>
+        <li><a href="{% url 'inbox' %}"><i class="material-icons left">message</i>Messages</a></li>
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">person</i>Profile</a></li>
+      </ul>
+    </div>
+  </nav>
 
     <ul id="slide-out" class="sidenav">
     <li><div class="user-view">

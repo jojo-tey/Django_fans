@@ -3,6 +3,7 @@ from tier.forms import NewTierForm
 
 from tier.models import Tier, Subscription
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 # Create your views here.
 
 
@@ -41,3 +42,42 @@ def Subscribe(request, username, tier_id):
         return redirect('index')
     except User.DoesNotExist:
         return redirect('index')
+
+
+def FansList(request):
+    my_fans = Subscription.objects.filter(subscribed=request.user)
+
+    context = {
+        'my_fans': my_fans
+    }
+
+    return render(request, 'fans_list.html', context)
+
+
+def FollowingList(request):
+    my_follows = Subscription.objects.filter(subscriber=request.user)
+
+    for follows in my_follows:
+        if follows.expired != True:
+            end_date = datetime.now() - timedelta(days=30)
+            remaining = follows.date.replace(
+                tzinfo=None) - end_date.replace(tzinfo=None)
+            days_left = remaining.days
+            follows.date = days_left
+
+    context = {
+        'my_follows': my_follows
+    }
+
+    return render(request, 'following_list.html', context)
+
+
+def CheckExpiration(request):
+    exp_date = datetime.now() - timedelta(days=30)
+    subs = Subscription.objects.filter(
+        subscriber=request.user, date__lt=exp_date)
+    subs.update(expired=True)
+    fans = Subscription.objects.filter(
+        subscribed=request.user, date__lt=exp_date)
+    fans.update(expired=True)
+    return redirect('index')

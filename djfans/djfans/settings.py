@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'authy',
     'tier',
     'post',
+    'comment',
+    'notifications',
+    'direct'
 ]
 
 MIDDLEWARE = [
