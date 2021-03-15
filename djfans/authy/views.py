@@ -8,7 +8,7 @@ from django.db.models import Sum
 
 from authy.models import Profile, PeopleList
 from tier.models import Tier, Subscription
-# from post.models import PostFileContent, Post
+from post.models import PostFileContent, Post
 
 from authy.forms import NewListForm
 
@@ -24,18 +24,18 @@ from django.urls import resolve
 # Create your views here.
 
 
-# def SideNavInfo(request):
-#     user = request.user
-#     nav_profile = None
-#     fans = None
-#     follows = None
+def SideNavInfo(request):
+    user = request.user
+    nav_profile = None
+    fans = None
+    follows = None
 
-#     if user.is_authenticated:
-#         nav_profile = Profile.objects.get(user=user)
-#         fans = Subscription.objects.filter(subscribed=user).count()
-#         follows = Subscription.objects.filter(subscriber=user).count()
+    if user.is_authenticated:
+        nav_profile = Profile.objects.get(user=user)
+        fans = Subscription.objects.filter(subscribed=user).count()
+        follows = Subscription.objects.filter(subscriber=user).count()
 
-#     return {'nav_profile': nav_profile, 'fans': fans, 'follows': follows}
+    return {'nav_profile': nav_profile, 'fans': fans, 'follows': follows}
 
 
 def UserProfile(request, username):
@@ -92,18 +92,18 @@ def UserProfile(request, username):
         posts_data = paginator.get_page(page_number)
 
     # Profile stats
-    # income = Subscription.objects.filter(
-    #     subscribed=user, expired=False).aggregate(Sum('tier__price'))
-    # fans_count = Subscription.objects.filter(
-    #     subscribed=user, expired=False).count()
-    # posts_count = Post.objects.filter(user=user).count()
+    income = Subscription.objects.filter(
+        subscribed=user, expired=False).aggregate(Sum('tier__price'))
+    fans_count = Subscription.objects.filter(
+        subscribed=user, expired=False).count()
+    posts_count = Post.objects.filter(user=user).count()
 
     # Favorite people lists select
-    # favorite_list = PeopleList.objects.filter(user=request.user)
+    favorite_list = PeopleList.objects.filter(user=request.user)
 
     # Check if the profile is in any of favorite list
-    # person_in_list = PeopleList.objects.filter(
-    #     user=request.user, people=user).exists()
+    person_in_list = PeopleList.objects.filter(
+        user=request.user, people=user).exists()
 
     # New Favorite List form
     if request.method == 'POST':
@@ -119,16 +119,16 @@ def UserProfile(request, username):
 
     context = {
         'profile': profile,
-        # 'tiers': tiers,
-        # 'form': form,
-        # 'favorite_list': favorite_list,
-        # 'person_in_list': person_in_list,
-        # 'posts': posts_data,
-        # 'page_type': page_type,
-        # 'income': income,
-        # 'fans_count': fans_count,
-        # 'posts_count': posts_count,
-        # 'no_a_subscriber': no_a_subscriber,
+        'tiers': tiers,
+        'form': form,
+        'favorite_list': favorite_list,
+        'person_in_list': person_in_list,
+        'posts': posts_data,
+        'page_type': page_type,
+        'income': income,
+        'fans_count': fans_count,
+        'posts_count': posts_count,
+        'no_a_subscriber': no_a_subscriber,
 
     }
 

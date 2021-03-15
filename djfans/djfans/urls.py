@@ -19,16 +19,22 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from authy.views import UserProfile
+from authy.views import UserProfile, RemoveFromList
 from tier.views import Subscribe
+from post.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('authy.urls')),
     path('sub/', include('tier.urls')),
     path('post/', include('post.urls')),
+    # path('notifications/', include('notifications.urls')),
+    # path('messages/', include('direct.urls')),
+    path('', index, name='index'),
     path('<username>/', UserProfile, name='profile'),
+    path('<username>/photos', UserProfile, name='profilephotos'),
+    path('<username>/videos', UserProfile, name='profilevideos'),
     path('<username>/<tier_id>/subscribe', Subscribe, name='subscribe'),
-
+    path('<username>/remove/fromlist', RemoveFromList, name='remove-from-list'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

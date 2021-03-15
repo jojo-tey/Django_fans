@@ -29,6 +29,8 @@ def user_directory_path_banner(instance, filename):
 
     return banner_pic_name
 
+# Create your models here.
+
 
 class Profile(models.Model):
     user = models.OneToOneField(

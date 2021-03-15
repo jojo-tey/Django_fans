@@ -64,29 +64,38 @@
     </nav>
 
     <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <div class="background">
-            <img src="images/office.jpg" />
-          </div>
-          <a href="#user"><img class="circle" src="images/yuna.jpg" /></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"
-            ><span class="white-text email">jdandturk@gmail.com</span></a
-          >
-        </div>
-      </li>
-      <li>
-        <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
-      </li>
-      <li><a href="#!">Second Link</a></li>
-      <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"
-      ><i class="material-icons">menu</i></a
-    >
+    <li><div class="user-view">
+      <div class="background">
+        {% if nav_profile.banner %}
+          <img src="{{ nav_profile.banner.url }}">
+        {% else %}
+          <img src="{% static 'img/nobanner.jpg' %}">
+        {% endif %}
+      </div>
+      <a href="#user">
+      {% if nav_profile.picture %}
+        <img src="{{ nav_profile.picture.url }}" class="circle responsive-img">
+      {% else %}
+        <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
+      {% endif %} 
+      </a>
+      <a href="#name"><span class="white-text name">{{ nav_profile.user.first_name }} {{ nav_profile.user.last_name }}</span></a>
+      <a href="#email"><span class="white-text email">{{ nav_profile.user.email }}</span></a>
+    </div></li>
+    <li><a href="{% url 'myfans' %}"><i class="material-icons">star</i>{{ fans }}     Fans</a></li>
+    <li><a href="{% url 'myfollows' %}"><i class="material-icons">people</i>{{ follows }}     Following</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Me</a></li>
+    <li><a href="{% url 'profile' nav_profile.user.username %}"><i class="material-icons">person</i>My profile</a></li>
+    <li><a href="{% url 'bookmarks' %}"><i class="material-icons">bookmarks</i>Bookmarks</a></li>
+    <li><a href="{% url 'show-my-lists' %}"><i class="material-icons">list</i>Lists</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Payments</a></li>
+    <li><a href="#!"><i class="material-icons">credit_card</i>Your cards</a></li>
+    <li><a href="#!"><i class="material-icons">account_balance</i>Your Bank</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="{% url 'logout' %}"><i class="material-icons">power_off</i>Log out</a></li>
+  </ul>
 
     {% comment %} BLOCK CONTENT {% endcomment %}
 

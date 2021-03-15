@@ -3,15 +3,16 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import uuid
 
-from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
-from tier.models import Tier
+from tier.models import Tier, Subscription
+# from notifications.models import Notification
 # Create your models here.
 
 
 def user_directory_path(instance, filename):
-    # File upload path : MEDIA_ROOT / the user(id) / thefile
+    # This file will be uploaded to MEDIA_ROOT /the user(id)/thefile
     return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 
@@ -72,3 +73,30 @@ class Likes(models.Model):
         User, on_delete=models.CASCADE, related_name='user_likes')
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='post_likes')
+
+    # def user_liked_post(sender, instance, *args, **kwargs):
+    #     like = instance
+    #     post = like.post
+    #     sender = like.user
+    #     notify = Notification(post=post, sender=sender,
+    #                           user=post.user, notification_type=1)
+    #     notify.save()
+
+    # def user_unlike_post(sender, instance, *args, **kwargs):
+    #     like = instance
+    #     post = like.post
+    #     sender = like.user
+    #     notify = Notification.objects.filter(
+    #         post=post, sender=sender, notification_type=1)
+    #     notify.delete()
+
+
+class Bookmark(models.Model):
+    posts = models.ManyToManyField(Post)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='bookmark_user')
+
+
+# Signals stuff for Likes:
+# post_save.connect(Likes.user_liked_post, sender=Likes)
+# post_delete.connect(Likes.user_unlike_post, sender=Likes)
