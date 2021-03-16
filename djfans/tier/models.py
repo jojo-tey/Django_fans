@@ -16,7 +16,7 @@ class Tier(models.Model):
         User, on_delete=models.CASCADE, related_name='tier_user')
 
     def __str__(self):
-        return 'Tier ' + str(self.number)
+        return str(self.user) + '-' + str(self.description)
 
     def save(self, *args, **kwargs):
         amount = Tier.objects.filter(user=self.user).count()
