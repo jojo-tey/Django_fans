@@ -7,7 +7,7 @@ class NewPostForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'validate'}), required=True)
     content = forms.FileField(widget=forms.ClearableFileInput(
-        attrs={'multiple': True}), required=True)
+        attrs={'multiple': False}), required=True)
     caption = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'materialize-textarea'}), required=True)
     tier = forms.ModelChoiceField(queryset=Tier.objects.all())

@@ -60,7 +60,7 @@ def PostDetails(request, post_id):
     else:
         form = CommentForm()
 
-    # To validate that the user can see the post
+# To validate that the user can see the post
     if user != post.user:
         subscriber = Subscription.objects.get(
             subscriber=request.user, subscribed=post.user)
