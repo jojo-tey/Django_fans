@@ -21,7 +21,7 @@ def index(request):
     stream_items = Stream.objects.filter(user=user).order_by('-date')
 
     # Pagination
-    paginator = Paginator(stream_items, 9)
+    paginator = Paginator(stream_items, 3)
     page_number = request.GET.get('page')
     stream_data = paginator.get_page(page_number)
 

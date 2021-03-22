@@ -37,7 +37,7 @@
             <p class="card-title grey-text text-darken-4">This content is for {{ stream.post.tier }}</p>
             <span class="card-title grey-text text-darken-4">You need to upgrade your subscription</span>
             <br><br>
-            <a class="waves-effect waves-light btn-large"><i class="material-icons left">upgrade</i>Upgrade</a> 
+            <a href="{{ stream.post.user.profile }}" class="waves-effect waves-light btn-large"><i class="material-icons left">upgrade</i>Upgrade</a> 
           </div>
       {% endif %}
         <div class="card-content">
