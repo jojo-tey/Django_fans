@@ -64,7 +64,7 @@ class Stream(models.Model):
                     stream.save()
                 else:
                     stream = Stream(
-                        post=post, user=subscriber.subscriber, date=post.posted, subscribed=user)
+                        post=post, user=subscriber.subscriber, date=post.posted, subscribed=user, visible=False)
                     stream.save()
 
 
