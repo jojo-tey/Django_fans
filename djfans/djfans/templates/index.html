@@ -30,6 +30,10 @@
         {% endif %}
         </div>
       {% else %}
+
+{% comment %} Issue: No visible on index if not subscribed  {% endcomment %}
+{% comment %} Issue: Multiple return if tier is more than 1  {% endcomment %}
+
           <div class="center-align">
             <i class="material-icons large grey-text">lock</i>
             <br>
