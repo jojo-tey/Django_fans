@@ -60,11 +60,11 @@
 
     <div class="col s12 m12 center-align">
         {% if bookmark_data.has_previous %}
-          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">arrow_back</i>Back</a>
+          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
         {% endif %}
     
         {% if bookmark_data.has_next %}
-          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Load more</a>
+          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">add</i>Load more</a>
         {% endif %}
       </div>
 

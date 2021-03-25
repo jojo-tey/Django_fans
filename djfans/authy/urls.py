@@ -1,6 +1,5 @@
 from django.urls import path
 from authy.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile, addToList, ShowList, listpeople, listpeopledelete
-
 from django.contrib.auth import views as authViews
 
 

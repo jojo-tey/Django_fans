@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
-from django.db.models import Sum
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 from authy.models import Profile, PeopleList
 from tier.models import Tier, Subscription
@@ -16,6 +17,7 @@ from django.db import transaction
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Sum
 
 from django.core.paginator import Paginator
 
@@ -177,7 +179,7 @@ def PasswordChange(request):
 
 
 def PasswordChangeDone(request):
-    return render(request, 'change_password_done.html')
+    return render(request, 'registration/change_password_done.html')
 
 
 @login_required

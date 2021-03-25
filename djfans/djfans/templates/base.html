@@ -11,14 +11,16 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 
 
-  <nav class="light-blue" role="navigation">
+  <nav class="blue darken-1" role="navigation">
     <div class="nav-wrapper container">
-      <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">cloud</i>Fans</a>
+      <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">cloud</i>Djfans</a>
       <ul class="right hide-on-med-and-down">
+        
         <li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
         <li><a href="{% url 'show-notifications' %}"><i class="material-icons left">notifications</i>Notifications<span class="new badge">{{ count_notifications }}</span></a></li>
         <li><a href="{% url 'newpost' %}"><i class="material-icons left">add_box</i>Post</a></li>
@@ -55,7 +57,7 @@
     <li><div class="divider"></div></li>
     <li><a class="subheader">Me</a></li>
     <li><a href="{% url 'profile' nav_profile.user.username %}"><i class="material-icons">person</i>My profile</a></li>
-    <li><a href="{% url 'bookmarks' %}"><i class="material-icons">bookmarks</i>Bookmarks</a></li>
+    <li><a href="{% url 'change_password' %}"><i class="material-icons">https</i>Change password</a></li>
     <li><a href="{% url 'show-my-lists' %}"><i class="material-icons">list</i>Lists</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Payments</a></li>
@@ -79,34 +81,22 @@
 </div>
 
 
-    {% block icons %}
-    {% endblock %}
 
-  <footer class="page-footer orange">
+  <footer class="page-footer blue darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">This project refers to onlyfans to practice user authentication, posting, viewing data according to authority, direct message, and file uploading and saving.</p>
 
 
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+        
+        <div class="col l6 s12">
+          <h5 class="white-text">Contact</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a href="#"><i class="fa fa-github white-text"> Github</i></a></li>
+            <li><a href="#"><i class="fa fa-check-square-o white-text"> Portfolio</i></a></li>
           </ul>
         </div>
       </div>
@@ -117,7 +107,6 @@
       </div>
     </div>
   </footer>
-
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

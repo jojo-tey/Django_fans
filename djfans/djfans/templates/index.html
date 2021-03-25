@@ -20,7 +20,7 @@
         {% if stream.post.content.first.file.name|slice:"-3:" == 'jpg' %}
           <a href="{{ stream.post.get_absolute_url }}"><img src="{{ stream.post.content.first.file.url }}"></a>
           <span class="card-title"><b>{{ stream.post.title }}</b></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+          {% comment %} <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a> {% endcomment %}
         {% else %}
         <div class="video-container">
           <video class="responsive-video" controls="controls" preload="metadata">
@@ -44,6 +44,7 @@
             <a href="{{ stream.post.user.profile }}" class="waves-effect waves-light btn-large"><i class="material-icons left">upgrade</i>Upgrade</a> 
           </div>
       {% endif %}
+
         <div class="card-content">
           {{ stream.post.caption }}
           <p><a href="{{ stream.post.get_absolute_url }}">Click to see Full post</a></p>
@@ -79,11 +80,11 @@
     
   <div class="col s12 m12 center-align">
     {% if stream_data.has_previous %}
-      <a href="?page={{ stream_data.previous_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">arrow_back</i>Back</a>
+      <a href="?page={{ stream_data.previous_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
     {% endif %}
 
     {% if stream_data.has_next %}
-      <a href="?page={{ stream_data.next_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Load more</a>
+      <a href="?page={{ stream_data.next_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">add</i>Load more</a>
     {% endif %}
   </div>
 
