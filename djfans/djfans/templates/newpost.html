@@ -2,11 +2,12 @@
 {% load static %}
 
 {% block content %}
+
 <div class="col s12 offset-s3">
     <div class="col s12 m6">
-        <div class="card">
+        <div class="card ">
             <form method="post" action="" enctype="multipart/form-data" role="form" class="col s12">
-                <h4>New Post</h4>
+                <h4 class="center-align">New Post</h4>
                 {% csrf_token %}
                 <div class="file-field input-field col s12">
                     <div class="btn blue lighten-1">
@@ -32,7 +33,7 @@
                     {{ form.tier }}
                     <label for="tier">Tier Select</label>
                 </div>
-                <div class="input-field col s12">
+                <div class="input-field col s12 center-align">
                     <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Post
                         <i class="material-icons right">post_add</i>
                     </button>

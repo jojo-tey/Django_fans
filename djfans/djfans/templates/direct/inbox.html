@@ -18,7 +18,7 @@
             {% endif %}
                 <span class="title">{{ message.user.first_name }} {{ message.user.last_name }}</span>
                 <p><b>@{{ message.user.username }}</b></p>
-                <span class="new badge">{{ message.unread }}</span>
+                <span class="new badge pink">{{ message.unread }}</span>
                 <a href="" class="secondary-content red-text"><i class="material-icons">delete</i></a>
         </li>
         </a>
@@ -35,7 +35,7 @@
     {% endfor %}
   </ul>
 <div class="center-align">
-  <a href="{% url 'user-search' %}" class="waves-effect waves-light btn-large"><i class="material-icons right">search</i>Search</a>
-  <a href="{% url 'people-we-can-message' %}" class="waves-effect waves-light btn-large"><i class="material-icons right">person</i>Following</a>
+  <a href="{% url 'user-search' %}" class="waves-effect waves-light btn-large blue lighten-1"><i class="material-icons right">search</i>Search</a>
+  <a href="{% url 'people-we-can-message' %}" class="waves-effect waves-light btn-large blue lighten-1"><i class="material-icons right">person</i>Following</a>
 </div>
 {% endblock %}
