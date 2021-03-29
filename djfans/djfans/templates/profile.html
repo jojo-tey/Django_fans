@@ -5,7 +5,7 @@
 {% block banner %}
 
     <div class="col s12 m12">
-      <div class="card">
+      <div class="card blue-grey darken-3 white-text">
 
         <div class="card-image">
           {% if profile.banner %}
@@ -29,12 +29,12 @@
             <div class="right-align">
 
               {% if user.is_authenticated and user == profile.user %}
-                <a href="{% url 'edit-profile' %}" class="btn blue lighten-1"><i class="material-icons">edit</i>Edit profile</a>
+                <a href="{% url 'edit-profile' %}" class="btn blue-grey lighten-1"><i class="material-icons">edit</i>Edit profile</a>
               {% endif %}
 
               {% if user.is_authenticated and user != profile.user %}
                 {% if person_in_list == True %}
-                  <a href="{% url 'remove-from-list' profile.user.username %}" class="btn pink"><i class="material-icons">favorite</i>Remove</a>
+                  <a href="{% url 'remove-from-list' profile.user.username %}" class="btn pink darken-2"><i class="material-icons">favorite</i>Remove</a>
                 {% else %}
                   <a href="#modal1" class="modal-trigger"><i class="material-icons">favorite</i>Favorite</a>
                 {% endif %}
@@ -58,14 +58,14 @@
                       <label>Favorite People List</label>
                     </div>
                     <input type="hidden" name="to" value="{{ profile.user.username }}">
-                    <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action">Submit
                       <i class="material-icons right">send</i>
                     </button>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <a href="#modal2" class="waves-effect waves-green btn-flat modal-trigger blue lighten-1">New List</a>
-                  <a href="#!" class="modal-close waves-effect waves-green btn-flat blue lighten-1">Close</a>
+                  <a href="#modal2" class="waves-effect waves-green btn-flat modal-trigger blue-grey lighten-1">New List</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat blue-grey lighten-1">Close</a>
                 </div>
               </div>
               <!-- END Modal Structure For the list select -->
@@ -81,7 +81,7 @@
             <div class="row">
               <div class="col s12 m4">
                 <div class="icon-block">
-                  <h2 class="center light-blue-text"><i class="material-icons">wallpaper</i></h2>
+                  <h2 class="center grey-text"><i class="material-icons">wallpaper</i></h2>
                   <h5 class="center">Posts</h5>
                   <h4 class="center">{{ posts_count }}</h4>
                   <p></p>
@@ -89,7 +89,7 @@
               </div>
                 <div class="col s12 m4">
                   <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
+                    <h2 class="center grey-text"><i class="material-icons">attach_money</i></h2>
                     <h5 class="center">Per month</h5>
                     <h4 class="center">{% if income == None %}0{% else %}{{ income.tier__price__sum }}{% endif %}</h4>
                     <p></p>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col s12 m4">
                 <div class="icon-block">
-                  <h2 class="center light-blue-text"><i class="material-icons">people</i></h2>
+                  <h2 class="center grey-text"><i class="material-icons">people</i></h2>
                   <h5 class="center">Fans</h5>
                   <h4 class="center">{{ fans_count }}</h4>
                   <p></p>
@@ -127,7 +127,7 @@
 
          
             <div class="card-tabs">
-              <ul class="tabs tabs-fixed-width">
+              <ul class="tabs tabs-fixed-width blue-grey darken-2">
                 <li class="tab col s3"><a target="_self" class="{% if page_type == 3 %}active{% endif %}" href="{% url 'profile' profile.user.username %}">Posts</a></li>
                 <li class="tab col s3"><a target="_self" class="{% if page_type == 1 %}active{% endif %}" href="{% url 'profilephotos' profile.user.username %}">Pictures</a></li>
                 <li class="tab col s3"><a target="_self" class="{% if page_type == 2 %}active{% endif %}" href="{% url 'profilevideos' profile.user.username %}">Videos</a></li>
@@ -166,7 +166,7 @@
       {% endfor %}
     </div>   
   {% elif page_type == 2 %}
-    <div class="row">
+    <div class="row ">
       {% for post in posts %}
       <div class="col s4">
         <video class="responsive-video" controls="controls" preload="metadata">
@@ -178,17 +178,17 @@
   {% else %}
   
 
-  <div class="row">
+  <div class="row blue-grey darken-3">
     {% for post in posts %}
     
           <div class="col s4">
-            <div class="card">
+            <div class="card blue-grey darken-3">
 
               <div class="card-image">
               {% if post.content.first.file.name|slice:"-3:" == 'jpg' %}
                 <a href="{{ post.get_absolute_url }}"><img src="{{ post.content.first.file.url }}"></a>
                 <span class="card-title"><b>{{ post.title }}</b></span>
-                <a class="btn-floating halfway-fab waves-effect waves-light pink"><i class="material-icons">favorite</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light pink darken-2"><i class="material-icons">favorite</i></a>
               {% else %}
               <div class="video-container">
                 <video class="responsive-video" controls="controls" preload="metadata">
@@ -233,13 +233,13 @@
 
 {% endif %}
 
-<div class="col s12 m12 center-align">
+<div class="col s12 m12 center-align blue-grey darken-3">
   {% if posts.has_previous %}
-    <a href="?page={{ posts.previous_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
+    <a href="?page={{ posts.previous_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
   {% endif %}
 
   {% if posts.has_next %}
-    <a href="?page={{ posts.next_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">add</i>Load more</a>
+    <a href="?page={{ posts.next_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">add</i>Load more</a>
   {% endif %}
 </div>
 {% endblock %}

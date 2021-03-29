@@ -2,16 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="divider"></div>
-<div class="section">
+<div class="section grey-text">
   <h5>My subscriptions:</h5>
   <p>People I am following</p>
 </div>
 <div class="divider"></div>
 
 {% for person in my_follows %}
-    <div class="col s12 m4">
-              <div class="card">
+    <div class="col s12 m4 ">
+              <div class="card blue-grey darken-3 white-text">
                 <div class="card-image">
                 {% if person.subscribed.profile.banner %}
                     <img src="{{ person.subscribed.profile.banner.url }}">
@@ -43,9 +42,9 @@
                             <span>@<b>{{ person.subscribed.username }}</b></span>
                             <p>{{ person.subscribed.profile.profile_info }}</p>
                             {% if person.expired == True %}
-                                <a class="waves-effect waves-light btn amber"><i class="material-icons left">autorenew</i>Renew subscription</a>
+                                <a class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons left">autorenew</i>Renew subscription</a>
                             {% else %}
-                                <a class="waves-effect waves-light btn pink"><i class="material-icons left">cancel</i>Cancel subscription</a>
+                                <a class="waves-effect waves-light btn pink darken-2"><i class="material-icons left">cancel</i>Cancel subscription</a>
                             {% endif %}
                         </div>
                     </div>

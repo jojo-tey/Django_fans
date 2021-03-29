@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block content %}
-<div class="divider"></div>
-<div class="section">
+
+<div class="section grey-text">
   <h5>People subscribed to me:</h5>
 </div>
 <div class="divider"></div>
 
 {% for person in my_fans %}
     <div class="col s12 m4">
-              <div class="card">
+              <div class="card blue-grey darken-3 white-text">
                 <div class="card-image">
                 {% if person.subscriber.profile.banner %}
                     <img src="{{ person.subscriber.profile.banner.url }}">

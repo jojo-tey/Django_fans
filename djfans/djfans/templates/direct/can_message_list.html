@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="divider"></div>
-<div class="section">
+<div class="section grey-text">
   <h5>People that you are following</h5>
   <p>These people are the ones that you can message:</p>
 </div>
@@ -11,7 +10,7 @@
 
 {% for person in people %}
     <div class="col s12 m4">
-              <div class="card">
+              <div class="card blue-grey darken-3 white-text">
                 <div class="card-image">
                   {% if person.subscribed.profile.banner %}
                     <img src="{{ person.subscribed.profile.banner.url }}">
@@ -35,7 +34,7 @@
                             <br>
                             <span>@<b>{{ person.subscribed.username }}</b></span>
                             <p>{{ person.subscribed.profile.profile_info }}</p>
-                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">send</i>Send a message!</a>
+                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">send</i>message</a>
                         </div>
                     </div>
                 </div>

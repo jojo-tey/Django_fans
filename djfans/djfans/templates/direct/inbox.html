@@ -3,28 +3,28 @@
 
 {% block content %}
 
-<ul class="collection with-header">
-    <li class="collection-header">
+<ul class="collection with-header blue-grey darken-4 white-text" style="border:none;">
+    <li class="collection-header blue-grey darken-4">
         <h3>Inbox</h3>
         <h5>Active conversations</h5>
     </li>
     {% for message in messages %}
         <a href="{% url 'directs' message.user.username %}">
-        <li class="collection-item avatar">
+        <li class="collection-item avatar blue-grey darken-4">
             {% if message.user.profile.picture %}
                 <img src="{{ message.user.profile.picture.url }}" class="circle responsive-img">
             {% else %}
                 <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
             {% endif %}
-                <span class="title">{{ message.user.first_name }} {{ message.user.last_name }}</span>
+                <span class="title white-text">{{ message.user.first_name }} {{ message.user.last_name }}</span>
                 <p><b>@{{ message.user.username }}</b></p>
-                <span class="new badge pink">{{ message.unread }}</span>
-                <a href="" class="secondary-content red-text"><i class="material-icons">delete</i></a>
+                <span class="new badge pink darken-2">{{ message.unread }}</span>
+                <a href="" class="secondary-content grey-text"><i class="material-icons">delete</i></a>
         </li>
         </a>
     
     {% empty %}
-    <div class="center-align">
+    <div class="center-align blue-grey darken-4">
         <br><br><br><br><br>
         <i class="material-icons large">inbox</i>
         <h3>No messages</h3>
@@ -35,7 +35,7 @@
     {% endfor %}
   </ul>
 <div class="center-align">
-  <a href="{% url 'user-search' %}" class="waves-effect waves-light btn-large blue lighten-1"><i class="material-icons right">search</i>Search</a>
-  <a href="{% url 'people-we-can-message' %}" class="waves-effect waves-light btn-large blue lighten-1"><i class="material-icons right">person</i>Following</a>
+  <a href="{% url 'user-search' %}" class="waves-effect waves-light btn-large blue-grey lighten-1"><i class="material-icons right">search</i>Search</a>
+  <a href="{% url 'people-we-can-message' %}" class="waves-effect waves-light btn-large blue-grey lighten-1"><i class="material-icons right">person</i>Following</a>
 </div>
 {% endblock %}

@@ -17,7 +17,7 @@
         {% if post.content.first.file.name|slice:"-3:" == 'jpg' %}
           <a href="{{ post.get_absolute_url }}"><img src="{{ post.content.first.file.url }}"></a>
           <span class="card-title"><b>{{ post.title }}</b></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light pink"><i class="material-icons">favorite</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light pink darken-2"><i class="material-icons">favorite</i></a>
         {% else %}
         <div class="video-container">
           <video class="responsive-video" controls="controls" preload="metadata">
@@ -60,11 +60,11 @@
 
     <div class="col s12 m12 center-align">
         {% if bookmark_data.has_previous %}
-          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
+          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
         {% endif %}
     
         {% if bookmark_data.has_next %}
-          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">add</i>Load more</a>
+          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">add</i>Load more</a>
         {% endif %}
       </div>
 

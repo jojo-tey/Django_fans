@@ -11,7 +11,7 @@
             <input name="q" value="{{ request.GET.q }}" id="search" type="text" class="validate">
             <label for="last_name">Search</label>
           </div>
-          <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Search
+          <button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action">Search
             <i class="material-icons right">send</i>
           </button>
     </form>
@@ -43,7 +43,7 @@
                             <br>
                             <span>@<b>{{ person.subscribed.username }}</b></span>
                             <p>{{ person.subscribed.profile.profile_info }}</p>
-                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">send</i>Send a message!</a>
+                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">send</i>Send a message!</a>
                         </div>
                     </div>
                 </div>

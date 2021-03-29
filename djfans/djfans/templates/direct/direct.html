@@ -5,20 +5,20 @@
 
 {% block content %}
 
-<div class="col s12 m4">
-<ul class="collection with-header">
-    <li class="collection-header">
+<div class="col s12 m4 blue-grey darken-4 grey-text" >
+<ul class="collection with-header" style="border:none;">
+    <li class="collection-header blue-grey darken-4">
         <h5>Active chats</h5>
     </li>
     {% for message in messages %}
     <a style="color: gray;" href="{% url 'directs' message.user.username %}">
-        <li class="collection-item avatar {% if active_direct == message.user.username %}active{% endif %}">
+        <li class="collection-item avatar {% if active_direct == message.user.username %}active{% endif %} blue-grey darken-4">
         {% if message.user.profile.picture %}
             <img src="{{ message.user.profile.picture.url }}" class="circle responsive-img">
         {% else %}
             <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
         {% endif %}
-            <span class="title">{{ message.user.first_name }} {{ message.user.last_name }}</span>
+            <span class="title white-text">{{ message.user.first_name }} {{ message.user.last_name }}</span>
             <p><b>@{{ message.user.username }}</b></p>
             <span class="new badge">{{ message.unread }}</span>
             <a href="" class="secondary-content red-text"><i class="material-icons">delete</i></a>
@@ -28,20 +28,20 @@
 
 </div>
 
-<div style="overflow-y: scroll;" class="col s12 m8">
+<div style="overflow-y: scroll; min-height: 70vh" class="col s12 m8 blue-grey darken-4 scroll-item">
     <div style="max-width: 600px;" class="card">
-        <div class="card-content">
+        <div class="card-content blue-grey darken-4">
 
-            <div class="center-align">
+            <div class="center-align blue-grey darken-4">
             {% if directs.has_next %}
-                <a id="loadmorebtn" class="waves-effect waves-light btn-small blue lighten-1"><i class="material-icons left">add</i>Load more</a>
+                <a id="loadmorebtn" class="waves-effect waves-light btn-small blue-grey lighten-1"><i class="material-icons left">add</i>Load more</a>
                 <input id="page_number" type="hidden" value="{{ directs.next_page_number }}">
             {% endif %}
             </div>
 
-            <ol id="oldirects" style="list-style-type: none; display: flex; flex-direction: column-reverse;" class="collection">
+            <ol id="oldirects" style="list-style-type: none; display: flex; flex-direction: column-reverse; border:none;" class="collection ">
             {% for direct in directs %}
-                <li style="border-bottom: 0px;" class="collection-item avatar">
+                <li style="border-bottom: 0px;" class="collection-item avatar blue-grey darken-4 grey-text">
                     {% if direct.sender.profile.picture %}
                         <img src="{{ direct.sender.profile.picture.url }}" class="circle responsive-img">
                     {% else %}
@@ -57,7 +57,7 @@
     </div>
 
     <div class="card-action">
-        <div class="row">
+        <div class="row center-align">
             <form id="senddirectform" method="POST" action="{% url 'send-direct' %}">
                 {% csrf_token %}
                 <div class="input-field col s9">
@@ -66,7 +66,7 @@
                     <label for="text">Type your message</label>
                   </div>
                   <div class="input-field col s9">
-                  <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Send
+                  <button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action">Send
                     <i class="material-icons right">send</i>
                   </button>
                 </div>

@@ -13,3 +13,41 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+
+/* Blackwhite img hover */
+/* 
+.image-wrapper {
+  background: white !important;
+}
+.image-wrapper img {
+  mix-blend-mode: luminosity !important;
+}
+.image-wrapper img:hover {
+  mix-blend-mode: normal !important;
+} */
+
+
+/* scrollbar visible */
+/* .scroll-item::-webkit-scrollbar {
+  width: 10px;
+}
+.scroll-item::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+}
+.scroll-item::-webkit-scrollbar-track {
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+} */
+
+/* invisivle scroll*/
+.scroll-item{ 
+  -ms-overflow-style: none; 
+} 
+.scroll-item::-webkit-scrollbar{ 
+  display:none; 
+}
+
+

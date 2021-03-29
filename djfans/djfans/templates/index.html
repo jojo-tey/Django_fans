@@ -13,16 +13,19 @@
     
   {% for stream in stream_data %}
     <div class="col s12 m12">
-      <div class="card">
+      <div class="card blue-grey darken-3">
 
       {% if stream.visible == True %}
-        <div class="card-image">
+        <div class="card-image image-wrapper">
         {% if stream.post.content.first.file.name|slice:"-3:" == 'jpg' %}
-          <a href="{{ stream.post.get_absolute_url }}"><img src="{{ stream.post.content.first.file.url }}"></a>
+          
+          <a href="{{ stream.post.get_absolute_url }}">
+          <div class="image-wrapper"><img src="{{ stream.post.content.first.file.url }}"></div></a>
           <span class="card-title"><b>{{ stream.post.title }}</b></span>
+          
           {% comment %} <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a> {% endcomment %}
         {% else %}
-        <div class="video-container">
+        <div class="video-container image-wrapper">
           <video class="responsive-video" controls="controls" preload="metadata">
             <source src="{{ stream.post.content.first.file.url }}#t=0.5" type="video/mp4">
           </video>
@@ -34,23 +37,23 @@
 {% comment %} Issue: No visible on index if not subscribed  {% endcomment %}
 {% comment %} Issue: Multiple return if tier is more than 1  {% endcomment %}
 
-          <div class="center-align">
-            <i class="material-icons large grey-text">lock</i>
+          <div class="center-align ">
+            <i class="material-icons large">lock</i>
             <br>
             <h5>No available</h5>
-            <p class="card-title grey-text text-darken-4">This content is for {{ stream.post.tier }}</p>
-            <span class="card-title grey-text text-darken-4">You need to upgrade your subscription</span>
+            <p class="card-title text-darken-4">This content is for {{ stream.post.tier }}</p>
+            <span class="card-title text-darken-4">You need to upgrade your subscription</span>
             <br><br>
-            <a href="{{ stream.post.user.profile }}" class="waves-effect waves-light btn-large"><i class="material-icons left">upgrade</i>Upgrade</a> 
+            <a href="{{ stream.post.user.profile }}" class="waves-effect waves-light btn-large blue-grey lighten-1"><i class="material-icons left">upgrade</i>Upgrade</a> 
           </div>
       {% endif %}
 
-        <div class="card-content">
+        <div class="card-content white-text">
           {{ stream.post.caption }}
           <p><a href="{{ stream.post.get_absolute_url }}">Click to see Full post</a></p>
         </div>
 
-        <div class="card-action">
+        <div class="card-action white-text">
           <div class="row">
             <div class="col s2">
               {% if stream.post.user.profile.picture %}
@@ -66,8 +69,8 @@
           </div>          
         </div>
 
-        <div class="card-action">
-          <a href="{% url 'postlike' stream.post.id %}"><i class="material-icons left">thumb_up</i>{{ stream.post.likes_count }} Likes</a>
+        <div class="card-action center-align">
+          <a href="{% url 'postlike' stream.post.id %}"><i class="material-icons">thumb_up</i>{{ stream.post.likes_count }} Likes</a>
           <a href="#"><i class="material-icons">favorite</i> {{ stream.post.favorites_count }} Favorites</a>
           <a href="#"><i class="material-icons">comment</i> {{ stream.post.comments_count }} Comments</a>
         </div>
@@ -80,11 +83,11 @@
     
   <div class="col s12 m12 center-align">
     {% if stream_data.has_previous %}
-      <a href="?page={{ stream_data.previous_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
+      <a href="?page={{ stream_data.previous_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">arrow_back</i>Back</a>
     {% endif %}
 
     {% if stream_data.has_next %}
-      <a href="?page={{ stream_data.next_page_number }}" class="waves-effect waves-light btn blue lighten-1"><i class="material-icons right">add</i>Load more</a>
+      <a href="?page={{ stream_data.next_page_number }}" class="waves-effect waves-light btn blue-grey lighten-1"><i class="material-icons right">add</i>Load more</a>
     {% endif %}
   </div>
 

@@ -14,10 +14,10 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="blue-grey darken-4">
   <header>
-    <div>
-      <nav class="blue darken-1" role="navigation">
+    <div class="blue-grey darken-3">
+      <nav class="blue-grey darken-3" role="navigation">
         <div class="nav-wrapper container">
           <a href="{% url 'index' %}" class="brand-logo"><i class="material-icons">cloud</i>Djfans</a>
           <ul class="right hide-on-med-and-down">
@@ -25,7 +25,7 @@
             <li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
             <li><a href="{% url 'show-notifications' %}"><i class="material-icons left">notifications</i>Notifications
             {% if count_notification %}
-            <span class="new badge pink">{{ count_notifications }}</span>
+            <span class="new badge pink darken-2">{{ count_notifications }}</span>
             {% endif %}
             </a></li>
             <li><a href="{% url 'newpost' %}"><i class="material-icons left">add_box</i>Post</a></li>
@@ -36,8 +36,8 @@
         </div>
       </nav>
 
-      <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
+      <ul id="slide-out" class="sidenav blue-grey darken-3 white-text">
+        <li class="white-text"><div class="user-view">
           <div class="background">
             {% if nav_profile.banner %}
               <img src="{{ nav_profile.banner.url }}">
@@ -55,19 +55,19 @@
           <a href="#name"><span class="white-text name">{{ nav_profile.user.first_name }} {{ nav_profile.user.last_name }}</span></a>
           <a href="#email"><span class="white-text email">{{ nav_profile.user.email }}</span></a>
         </div></li>
-        <li><a href="{% url 'myfans' %}"><i class="material-icons">star</i>{{ fans }}     Fans</a></li>
-        <li><a href="{% url 'myfollows' %}"><i class="material-icons">people</i>{{ follows }}     Following</a></li>
+        <li><a href="{% url 'myfans' %}"  class="white-text"><i class="material-icons">star</i>{{ fans }}     Fans</a></li>
+        <li><a href="{% url 'myfollows' %}"  class="white-text"><i class="material-icons">people</i>{{ follows }}     Following</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="subheader">Me</a></li>
-        <li><a href="{% url 'profile' nav_profile.user.username %}"><i class="material-icons">person</i>My profile</a></li>
-        <li><a href="{% url 'change_password' %}"><i class="material-icons">https</i>Change password</a></li>
-        <li><a href="{% url 'show-my-lists' %}"><i class="material-icons">list</i>Lists</a></li>
+        <li><a class="subheader grey-text">Me</a></li>
+        <li class="white-text"><a href="{% url 'profile' nav_profile.user.username %}"  class="white-text"><i class="material-icons">person</i>My profile</a></li>
+        <li><a href="{% url 'change_password' %}" class="white-text"><i class="material-icons">https</i>Change password</a></li>
+        <li><a href="{% url 'show-my-lists' %}"  class="white-text"><i class="material-icons">list</i>Lists</a></li>
         <li><div class="divider"></div></li>
-        <li><a class="subheader">Payments</a></li>
-        <li><a href="#!"><i class="material-icons">credit_card</i>Your cards</a></li>
-        <li><a href="#!"><i class="material-icons">account_balance</i>Your Bank</a></li>
+        <li><a class="subheader grey-text">Payments</a></li>
+        <li><a href="#!" class="white-text"><i class="material-icons">credit_card</i>Your cards</a></li>
+        <li><a href="#!" class="white-text"><i class="material-icons">account_balance</i>Your Bank</a></li>
         <li><div class="divider"></div></li>
-        <li><a href="{% url 'logout' %}"><i class="material-icons">power_off</i>Log out</a></li>
+        <li><a href="{% url 'logout' %}"  class="white-text"><i class="material-icons">power_off</i>Log out</a></li>
       </ul>
     </div>
   </header>
@@ -86,7 +86,7 @@
     </div>
   </main>
   
-  <footer class="page-footer blue darken-3">
+  <footer class="page-footer blue-grey darken-3">
     <div class="container ">
       <div class="row ">
         <div class="col l6 s12 left-align">
