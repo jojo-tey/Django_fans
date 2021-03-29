@@ -19,9 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 from authy.views import UserProfile, RemoveFromList
 from tier.views import Subscribe
 from post.views import index
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

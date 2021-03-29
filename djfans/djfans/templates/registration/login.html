@@ -27,6 +27,9 @@
       rel="stylesheet"
       media="screen,projection"
     />
+    <link 
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    />
   </head>
   <body class="blue-grey darken-3" >
     <div class="row center-align  white-text" >
@@ -70,10 +73,19 @@
 
             <input type="hidden" name="next" value="{{ next }}" />
 
-            <a href="{% url 'signup' %}" class="btn waves-effect waves-light blue-grey lighten-1" style="margin-bottom: 50px;"
-              >Create an account</a
-            >
+            <a href="{% url 'signup' %}" class="btn waves-effect waves-light blue-grey lighten-1" >Create an account</a>
           </form>
+          
+          <p class="center-align white-text">OR</p>
+          
+          {% load socialaccount %}
+          {% providers_media_js %}
+
+          <a href="{% provider_login_url 'google' %}" class="s12 btn waves-effect waves-light blue-grey lighten-1" style="margin-bottom: 50px;">
+          <i class="fa fa-google"></i> Sign in with Google</a><br>
+          {% comment %} <a href="{% provider_login_url 'github' %}" class="s12 btn waves-effect waves-light blue-grey lighten-1" style="margin-bottom: 50px;">
+          <i class="fa fa-github"></i> Sign in with GitHub</a> {% endcomment %}
+          
         </div>
       </div>
     </div>
