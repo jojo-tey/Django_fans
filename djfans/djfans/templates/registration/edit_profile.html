@@ -2,12 +2,12 @@
 
 <div class="row center-align">
   <div class="col s6 offset-s3">
-    <div class="card">
+    <div class="card blue-grey darken-3 white-text">
       <form method="post" enctype="multipart/form-data" action="" role="form">
         {% csrf_token %}
         <h3 class="title is-3">Edit Profile</h3>
 
-        <div class="file-field input-field">
+        <div class="file-field input-field ">
           <div class="btn btn-small blue-grey lighten-1">
             <span>Picture</span>
             {{ form.picture }}

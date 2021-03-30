@@ -24,7 +24,7 @@
             
             <li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
             <li><a href="{% url 'show-notifications' %}"><i class="material-icons left">notifications</i>Notifications
-            {% if count_notification %}
+            {% if count_notifications %}
             <span class="new badge pink darken-2">{{ count_notifications }}</span>
             {% endif %}
             </a></li>
@@ -38,12 +38,12 @@
 
       <ul id="slide-out" class="sidenav blue-grey darken-3 white-text">
         <li class="white-text"><div class="user-view">
-          <div class="background">
-            {% if nav_profile.banner %}
+          <div class="background blue-grey darken-3" style="border-bottom:1px solid white;">
+            {% comment %} {% if nav_profile.banner %}
               <img src="{{ nav_profile.banner.url }}">
             {% else %}
-              <img src="{% static 'img/nobanner.jpg' %}">
-            {% endif %}
+              <img src="{% static 'img/no_banner.jpg' %}">
+            {% endif %} {% endcomment %}
           </div>
           <a href="#user">
           {% if nav_profile.picture %}

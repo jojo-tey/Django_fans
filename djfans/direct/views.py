@@ -141,6 +141,12 @@ def UserSearch(request):
         paginator = Paginator(users, 6)
         page_number = request.GET.get('page')
         users_paginator = paginator.get_page(page_number)
+    else:
+        users = User.objects.all()
+
+        paginator = Paginator(users, 6)
+        page_number = request.GET.get('page')
+        users_paginator = paginator.get_page(page_number)
 
     context = {
         'users': users_paginator,

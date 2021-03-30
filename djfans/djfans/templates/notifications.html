@@ -35,7 +35,7 @@
             <a href="{% url 'postdetails' notification.post.id %}">See post</a>
         </li>
     {% else %}
-    <li class="collection-item avatar">
+    <li class="collection-item avatar blue-grey darken-3">
         {% if notification.sender.profile.picture %}
             <img src="{{ notification.sender.profile.picture.url }}" class="circle responsive-img">
         {% else %}
