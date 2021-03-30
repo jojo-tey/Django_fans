@@ -56,7 +56,7 @@ def FansList(request):
 
 def FollowingList(request):
     my_follows = Subscription.objects.filter(subscriber=request.user)
-
+    # tier_num = Tier.number
     for follows in my_follows:
         if follows.expired != True:
             end_date = datetime.now() - timedelta(days=30)

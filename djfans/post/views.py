@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.contrib.auth.models import User
 from post.forms import NewPostForm
 from comment.forms import CommentForm
 
@@ -18,9 +18,9 @@ from comment.models import Comment
 @login_required
 def index(request):
     user = request.user
+
     stream_items = Stream.objects.filter(user=user).order_by('-date')
 
-    # Pagination
     paginator = Paginator(stream_items, 3)
     page_number = request.GET.get('page')
     stream_data = paginator.get_page(page_number)

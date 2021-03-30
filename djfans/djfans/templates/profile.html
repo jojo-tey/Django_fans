@@ -182,7 +182,7 @@
     {% for post in posts %}
     
           <div class="col s4">
-            <div class="card blue-grey darken-3">
+            <div class="card blue-grey darken-3 white-text">
 
               <div class="card-image">
               {% if post.content.first.file.name|slice:"-3:" == 'jpg' %}
@@ -218,8 +218,8 @@
                 </div>          
               </div>
 
-              <div class="card-action">
-                <a href="{% url 'postlike' post.id %}"><i class="material-icons left">thumb_up</i>{{ post.likes_count }} Likes</a>
+              <div class="card-action center-align">
+                <a href="{% url 'postlike' post.id %}"><i class="material-icons ">thumb_up</i>{{ post.likes_count }} Likes</a>
                 <a href="#"><i class="material-icons">favorite</i> {{ post.favorites_count }} Favorites</a>
                 <a href="#"><i class="material-icons">comment</i> {{ post.comments_count }} Comments</a>
               </div>

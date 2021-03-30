@@ -58,7 +58,7 @@ class Stream(models.Model):
         if created:
             subscribers = Subscription.objects.all().filter(subscribed=user)
             for subscriber in subscribers:
-                if(subscriber.tier.number >= post.tier.number):
+                if(subscriber.tier.number == post.tier.number):
                     stream = Stream(post=post, user=subscriber.subscriber,
                                     date=post.posted, subscribed=user, visible=True)
                     stream.save()

@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="center-align">
+<div class="center-align white-text">
     <h4>Search users</h4>
     <span>Find users that you can messsage</span>
     <form class="col s12">
@@ -19,7 +19,7 @@
 
 {% for person in users %}
     <div class="col s12 m4">
-              <div class="card">
+              <div class="card blue-grey darken-3 white-text">
                 <div class="card-image">
                   {% if person.subscribed.profile.banner %}
                     <img src="{{ person.subscribed.profile.banner.url }}">
