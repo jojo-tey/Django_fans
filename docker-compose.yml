@@ -1,13 +1,23 @@
 version: '3.7'
 
 services:
-  app:
+  django_gunicorn:
+    volumes:
+      - static:/static
+    env_file:
+      - .env
     build:
       context: .
     ports:
       - "8000:8000"
+  nginx:
+    build: ./nginx
     volumes:
-      - ./djfans:/djfans
-    command: sh -c "python manage.py runserver 0.0.0.0:8000"
-    environment:
-      - DEBUG=1
+      - static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - django_gunicorn
+      
+volumes:
+  static:

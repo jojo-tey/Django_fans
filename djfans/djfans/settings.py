@@ -26,15 +26,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
 # SECRET_KEY = keys.SECRET
-SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+DEBUG = os.getenv('DEBUG')
+# DEBUG = True
 
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -147,16 +147,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/vol/web/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'djfans/static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'djfans/static'),
+# ]
+STATIC_ROOT = '/static/'
+
 
 MEDIA_URL = '/media/'
 # for dev
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # for deploy
-MEDIA_ROOT = '/vol/web/media'
+MEDIA_ROOT = '/media/'
+
+
 # Auth
 
 AUTHENTICATION_BACKENDS = (
