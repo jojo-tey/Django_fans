@@ -1,17 +1,31 @@
-FROM python:3.8.6
 
-RUN pip install --upgrade pip
-# RUN apt-get update \
-#   && apt-get install -yyq netcat
-COPY ./djfans/requirements.txt .
+FROM python:3.8-alpine
+
+ENV PATH="/scripts:${PATH}"
+
+COPY ./djfans/requirements.txt /requirements.txt 
+RUN apk add --update --no-cache --virtual .tmp gcc libc-dev build-base linux-headers python3-dev
+RUN apk add --no-cache jpeg-dev zlib-dev
+
+RUN pip install -r /requirements.txt
+RUN apk del .tmp
+
+RUN mkdir /djfans
+COPY ./djfans /djfans
+WORKDIR /djfans
+COPY ./scripts /scripts
 
 
-RUN pip install -r requirements.txt
 
-COPY ./djfans /app
+RUN chmod +x /scripts/*
 
-WORKDIR /app
+# access permission for user
+RUN mkdir -p /vol/web/media  
+RUN mkdir -p /vol/web/static
 
+RUN adduser -D user
+RUN chown -R user:user /vol
+RUN chmod -R 755 /vol/web
+USER user
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+CMD ["entrypoint.sh"]

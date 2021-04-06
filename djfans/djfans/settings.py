@@ -26,14 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
 # SECRET_KEY = keys.SECRET
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.getenv('DEBUG')
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 # Application definition
 
@@ -144,15 +146,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
+STATIC_ROOT = '/vol/web/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+# for dev
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# for deploy
+MEDIA_ROOT = '/vol/web/media'
 # Auth
 
 AUTHENTICATION_BACKENDS = (
