@@ -1,14 +1,14 @@
 
-FROM python:3.8-alpine
-
+FROM python:3.8
 ENV PATH="/scripts:${PATH}"
 
 
 COPY ./djfans/requirements.txt /requirements.txt 
-RUN apk add --update --no-cache --virtual .tmp python3-dev gcc libc-dev build-base linux-headers 
+RUN apk add --update --no-cache --virtual .tmp gcc musl-dev python3-dev libffi-dev openssl-dev py3-pip libevent-dev gcc libc-dev build-base  linux-headers 
 RUN apk add --no-cache jpeg-dev zlib-dev
 
-RUN pip install cryptography
+RUN pip install --upgrade pip
+
 RUN pip install -r /requirements.txt
 RUN apk del .tmp
 
@@ -16,7 +16,6 @@ RUN mkdir /djfans
 COPY ./djfans /djfans
 WORKDIR /djfans
 COPY ./scripts /scripts
-
 
 
 RUN chmod +x /scripts/*
