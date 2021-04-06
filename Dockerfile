@@ -3,10 +3,12 @@ FROM python:3.8-alpine
 
 ENV PATH="/scripts:${PATH}"
 
+
 COPY ./djfans/requirements.txt /requirements.txt 
-RUN apk add --update --no-cache --virtual .tmp gcc libc-dev build-base linux-headers python3-dev
+RUN apk add --update --no-cache --virtual .tmp python3-dev gcc libc-dev build-base linux-headers 
 RUN apk add --no-cache jpeg-dev zlib-dev
 
+RUN pip install cryptography
 RUN pip install -r /requirements.txt
 RUN apk del .tmp
 
