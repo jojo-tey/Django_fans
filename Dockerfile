@@ -5,9 +5,9 @@ RUN pip install --upgrade pip
 COPY ./djfans/requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY ./djfans /app
+COPY ./djfans /djfans
 
-WORKDIR /app
+WORKDIR /djfans
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
