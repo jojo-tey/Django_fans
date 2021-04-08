@@ -10,28 +10,36 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import keys
 from pathlib import Path
 import os
-import keys
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
-SECRET_KEY = keys.SECRET
+
+# Django-local
+# key for test = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
+# SECRET_KEY = keys.SECRET
+# DEBUG = True
+# ALLOWED_HOSTS = []
+
+# Docker
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+ALLOWED_HOSTS = ['*']
+
+# SECRET_KEY = keys.SECRET
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -144,12 +152,49 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 
 MEDIA_URL = '/media/'
+# for dev
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# for deploy
+# MEDIA_ROOT = '/media/'
+
+
+# for S3 bucket
+
+# # Local, use pipeline when DEBUG=True
+
+# if DEBUG:
+#     STATIC_URL = '/static/'
+#     STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
+#     STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# else:
+#     # AWS Setting
+#     AWS_REGION = 'ap-northeast-2'
+#     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
+#     AWS_QUERYSTRING_AUTH = False
+#     AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
+#     AWS_ACCESS_KEY_ID = 'ACCESS_KEY_ID'
+#     AWS_SECRET_ACCESS_KEY = 'SECRET_ACCESS_KEY'
+#     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+#     # Static Setting
+#     STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+#     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+#     #Media Setting
+#     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 
 # Auth
 
