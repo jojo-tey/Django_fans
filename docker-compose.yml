@@ -20,4 +20,4 @@ services:
       - django_gunicorn
       
 volumes:
-  static:
+  static: 
