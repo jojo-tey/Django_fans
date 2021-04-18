@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-# import keys
+
 from pathlib import Path
 import os
 
+# import keys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -152,16 +153,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 
 MEDIA_URL = '/media/'
-# for dev
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# for dev
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # for deploy
-# MEDIA_ROOT = '/media/'
 
 
 # for S3 bucket
@@ -179,7 +183,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # else:
 #     # AWS Setting
-#     AWS_REGION = 'ap-northeast-2'
+#     AWS_REGION = 'eu-central-1'
 #     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
 #     AWS_QUERYSTRING_AUTH = False
 #     AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
