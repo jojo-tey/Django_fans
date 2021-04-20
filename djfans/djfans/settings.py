@@ -14,11 +14,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-# import keys
+import keys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = os.path.dirname(BASE_DIR)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -28,14 +29,14 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Django-local
 # key for test = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
-# SECRET_KEY = keys.SECRET
-# DEBUG = True
-# ALLOWED_HOSTS = []
+SECRET_KEY = keys.SECRET
+DEBUG = True
+ALLOWED_HOSTS = []
 
 # Docker
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
-ALLOWED_HOSTS = ['*']
+# SECRET_KEY = os.getenv('SECRET_KEY')
+# DEBUG = os.getenv('DEBUG')
+# ALLOWED_HOSTS = ['*']
 
 # SECRET_KEY = keys.SECRET
 
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'comment',
     'notifications',
     'direct',
+    # 'storages',
 
     # Social login
     'allauth',
@@ -159,6 +161,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 
+
+# media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -170,34 +174,34 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # for S3 bucket
 
-# # Local, use pipeline when DEBUG=True
+# Local, use pipeline when DEBUG=True
 
-# if DEBUG:
-#     STATIC_URL = '/static/'
-#     STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
-#     STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(ROOT_DIR, 'djfans/static')
+    # STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#     MEDIA_URL = '/media/'
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    # AWS Setting
+    AWS_REGION = os.getenv('AWS_REGION')
+    AWS_STORAGE_BUCKET_NAME = 'djfans-static'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY')
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AUS_DEFAULT_ACL = 'public-read'
 
-# else:
-#     # AWS Setting
-#     AWS_REGION = 'eu-central-1'
-#     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
-#     AWS_QUERYSTRING_AUTH = False
-#     AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
-#     AWS_ACCESS_KEY_ID = 'ACCESS_KEY_ID'
-#     AWS_SECRET_ACCESS_KEY = 'SECRET_ACCESS_KEY'
-#     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    # Static Setting
+    STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-#     # Static Setting
-#     STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-#     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-#     #Media Setting
-#     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    # Media Setting
+    MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # Auth
