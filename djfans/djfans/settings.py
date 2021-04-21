@@ -35,8 +35,8 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # ALLOWED_HOSTS = []
 
 # Docker
-SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = os.environ['DEBUG']
+SECRET_KEY = os.environ('SECRET_KEY')
+DEBUG = os.environ('DEBUG')
 ALLOWED_HOSTS = ['*']
 
 
@@ -186,14 +186,15 @@ if DEBUG:
 
 else:
     # AWS Setting
-    AWS_REGION = os.environ['AWS_REGION']
+    AWS_REGION = os.environ('AWS_REGION')
     AWS_STORAGE_BUCKET_NAME = 'djfans-static'
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
+    AWS_ACCESS_KEY_ID = os.environ('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.environ('AWS_SECRET_KEY')
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AUS_DEFAULT_ACL = 'public-read'
+    S3_ACCESS_KEY = os.environ('S3_ACCESS_KEY')
 
     # Static Setting
     STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
