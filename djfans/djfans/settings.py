@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-# import keys
+import keys
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -27,10 +27,8 @@ def get_env_variable(var_name):
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-ROOT_DIR = os.path.dirname(BASE_DIR)
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -162,38 +160,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.dirname(
-    os.path.dirname(os.path.join(BASE_DIR, 'static')))
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'djfans/static'),
-]
-
-
-# media
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-# for dev
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# for deploy
-
-
-# for S3 bucket
-
 # Local, use pipeline when DEBUG=True
 
+# for dev
 if DEBUG:
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(ROOT_DIR, 'djfans/static')
-    # STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+    STATIC_ROOT = os.path.dirname(
+        os.path.dirname(os.path.join(BASE_DIR, 'static')))
 
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'djfans/static'),
+    ]
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# for S3 bucket
 else:
     # AWS Setting
     AWS_REGION = get_env_variable('AWS_REGION')
