@@ -1,3 +1,5 @@
 .vscode
 keys.py
-*.env
+.env
+.env
+.env

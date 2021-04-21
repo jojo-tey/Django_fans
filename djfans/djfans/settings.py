@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-import keys
+# import keys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,16 +30,14 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Django-local
 # key for test = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
-SECRET_KEY = keys.SECRET
-DEBUG = True
-ALLOWED_HOSTS = []
+# SECRET_KEY = keys.SECRET
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
 # Docker
-# SECRET_KEY = os.getenv('SECRET_KEY')
-# DEBUG = os.getenv('DEBUG')
-# ALLOWED_HOSTS = ['*']
-
-# SECRET_KEY = keys.SECRET
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+ALLOWED_HOSTS = ['*']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
