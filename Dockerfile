@@ -5,6 +5,7 @@ RUN pip install --upgrade pip
 COPY ./djfans/requirements.txt .
 RUN pip install -r requirements.txt
 
+
 COPY ./djfans /djfans
 
 WORKDIR /djfans

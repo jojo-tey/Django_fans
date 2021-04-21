@@ -13,22 +13,24 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import keys
-from django.core.exceptions import ImproperlyConfigured
+# import keys
+
+# from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env_variable(var_name):
-    """시스템 환경변수를 가져오기 위한 함수"""
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+# def get_env_variable(var_name):
+#     """시스템 환경변수를 가져오기 위한 함수"""
+#     try:
+#         return os.environ[var_name]
+#     except KeyError:
+#         error_msg = "Set the %s environment variable" % var_name
+#         raise ImproperlyConfigured(error_msg)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -38,13 +40,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Django-local
 # key for test = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
+# SECRET_KEY = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
 # SECRET_KEY = keys.SECRET
 # DEBUG = True
 # ALLOWED_HOSTS = []
 
 # Docker
-SECRET_KEY = get_env_variable('SECRET_KEY')
-DEBUG = get_env_variable('DEBUG')
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = os.environ['DEBUG']
 ALLOWED_HOSTS = ['*']
 
 
@@ -165,27 +168,26 @@ USE_TZ = True
 # for dev
 if DEBUG:
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.dirname(
-        os.path.dirname(os.path.join(BASE_DIR, 'static')))
-
+    STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'djfans/static'),
     ]
+
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # for S3 bucket
 else:
     # AWS Setting
-    AWS_REGION = get_env_variable('AWS_REGION')
+    AWS_REGION = os.environ['AWS_REGION']
     AWS_STORAGE_BUCKET_NAME = 'djfans-static'
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
-    AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY')
-    AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_KEY')
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AUS_DEFAULT_ACL = 'public-read'
-    S3_ACCESS_KEY = get_env_variable('S3_ACCESS_KEY')
+    S3_ACCESS_KEY = os.environ['S3_ACCESS_KEY']
 
     # Static Setting
     STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
