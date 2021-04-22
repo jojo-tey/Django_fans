@@ -11,6 +11,7 @@ services:
       - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
       - AWS_SECRET_KEY=${AWS_SECRET_KEY}
       - DEBUG=${DEBUG}
+      - DB_PASSWORD=${DB_PASSWORD}
 
     build:
       context: .
