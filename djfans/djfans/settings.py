@@ -132,7 +132,7 @@ WSGI_APPLICATION = 'djfans.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'djfansdb.cfyleonctk8z.eu-central-1.rds.amazonaws.com',
+        'HOST': 'djfansdb2.cfyleonctk8z.eu-central-1.rds.amazonaws.com',
         'PORT': '5432',
         'NAME': 'djfansdb',
         'USER': 'djfansdbmaster',
