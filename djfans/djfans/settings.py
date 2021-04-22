@@ -199,8 +199,8 @@ else:
     AWS_REGION = os.environ['AWS_REGION']
 
     AWS_QUERYSTRING_AUTH = False
-    AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % {
+        AWS_STORAGE_BUCKET_NAME, AWS_REGION}
     AUS_DEFAULT_ACL = 'public-read'
 
     # Static Setting
