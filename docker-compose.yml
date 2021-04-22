@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   django_gunicorn:
-    volumes:
-      - static:/static
+    # volumes:
+    #   - static:/static
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - S3_ACCESS_KEY=${S3_ACCESS_KEY}
@@ -22,12 +22,12 @@ services:
       - "8000:8000"
   nginx:
     build: ./nginx
-    volumes:
-      - static:/static
+    # volumes:
+    #   - static:/static
     ports:
       - "80:80"
     depends_on:
       - django_gunicorn
       
-volumes:
-  static: 
+# volumes:
+#   static: 
