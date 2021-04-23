@@ -199,7 +199,6 @@ else:
     AWS_STORAGE_BUCKET_NAME = 'djfans-static'
     S3_ACCESS_KEY = os.environ['S3_ACCESS_KEY']
 
-    AWS_QUERYSTRING_AUTH = False
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % {
         AWS_STORAGE_BUCKET_NAME, AWS_REGION}
     AWS_S3_OBJECT_PARAMETERS = {
