@@ -197,7 +197,7 @@ else:
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
     AWS_REGION = os.environ['AWS_REGION']
     S3_ACCESS_KEY = os.environ['S3_ACCESS_KEY']
-
+    AWS_DEFAULT_ACL = 'public-read'
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
         AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
@@ -205,9 +205,9 @@ else:
 
     # Static Setting
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'djfans/static'),
-    ]
+    # STATICFILES_DIRS = [
+    #     os.path.join(BASE_DIR, 'djfans/static'),
+    # ]
     STATICFILES_STORAGE = STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
     # Media Setting
