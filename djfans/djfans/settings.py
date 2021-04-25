@@ -192,16 +192,16 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
 AWS_S3_MAX_MEMORY_SIZE = 1024000000  # value in bytes 1GB here
 
 # Static Setting
-AWS_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # Media Setting
-MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
