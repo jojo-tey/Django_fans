@@ -176,6 +176,7 @@ USE_TZ = True
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
 # for S3 bucket - deploy
 
 # AWS Setting
@@ -191,14 +192,14 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
 AWS_S3_MAX_MEMORY_SIZE = 1024000000  # value in bytes 1GB here
 
 # Static Setting
-STATIC_URL = '/static/'
+STATIC_URL = 'https://%s/static/' % (AWS_S3_CUSTOM_DOMAIN)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'djfans/static'),
 ]
 STATICFILES_STORAGE = STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # Media Setting
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
