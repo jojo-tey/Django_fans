@@ -3,8 +3,8 @@ version: '3.8'
 services:
   django_gunicorn:
     volumes:
-      - static:/static
-      - media:/media
+      - static:https://djfans-static.s3.eu-central-1.amazonaws.com/static/
+      - media:https://djfans-static.s3.eu-central.amazonaws.com/media/
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - S3_ACCESS_KEY=${S3_ACCESS_KEY}
@@ -24,8 +24,8 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - static:/static
-      - media:/media
+      - static:https://djfans-static.s3.eu-central-1.amazonaws.com/static/
+      - media:https://djfans-static.s3.eu-central.amazonaws.com/media/
     ports:
       - "80:80"
     depends_on:
