@@ -198,15 +198,15 @@ else:
     AWS_REGION = os.environ['AWS_REGION']
     S3_ACCESS_KEY = os.environ['S3_ACCESS_KEY']
 
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % {
-        AWS_STORAGE_BUCKET_NAME, AWS_REGION}
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+        AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
     # Static Setting
-    STATIC_URL = "static"
+    STATIC_URL = 'static'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     # Media Setting
-    MEDIA_URL = "media"
+    MEDIA_URL = 'media'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
