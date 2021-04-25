@@ -39,4 +39,6 @@ urlpatterns = [
     path('<username>/<tier_id>/subscribe', Subscribe, name='subscribe'),
     path('<username>/remove/fromlist', RemoveFromList, name='remove-from-list'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

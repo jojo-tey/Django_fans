@@ -189,27 +189,24 @@ if DEBUG:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# for S3 bucket
+# for S3 bucket - deploy
 else:
     # AWS Setting
+    AWS_STORAGE_BUCKET_NAME = 'djfans-static'
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
     AWS_REGION = os.environ['AWS_REGION']
-
-    AWS_STORAGE_BUCKET_NAME = 'djfans-static'
     S3_ACCESS_KEY = os.environ['S3_ACCESS_KEY']
 
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % {
         AWS_STORAGE_BUCKET_NAME, AWS_REGION}
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
+   
     # Static Setting
-    STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+    STATIC_URL = "static"
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
     # Media Setting
-    MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+    MEDIA_URL = "media"
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
