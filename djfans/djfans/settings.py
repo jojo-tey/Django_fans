@@ -202,12 +202,17 @@ else:
         AWS_STORAGE_BUCKET_NAME, AWS_REGION)
 
     # Static Setting
-    STATIC_URL = 'static'
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'djfans/static'),
+    ]
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     # Media Setting
-    MEDIA_URL = 'media'
+    MEDIA_URL = '/media/'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Auth
