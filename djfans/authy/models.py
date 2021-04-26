@@ -49,7 +49,7 @@ class Profile(models.Model):
         SIZE = 250, 250
 
         if self.picture:
-            pic = Image.open(self.picture)
+            pic = Image.open(self.picture.path)
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.name)
 
