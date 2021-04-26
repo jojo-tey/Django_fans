@@ -47,14 +47,13 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        SIZE = 250, 250
 
         if self.picture:
+            size = 250, 250
             pic = Image.open(self.picture)
-            pic.thumbnail(SIZE, Image.LANCZOS)
-            fh = storage.open(self.picture.name, "w")
-            format = 'JPG'
-            pic.save(fh, format)
+            pic.thumbnail(size, Image.ANTIALIAS)
+            fh = storage.open(self.picture.name, "wb")
+            pic.save(fh, 'jpg')
             fh.close()
 
     def __str__(self):
