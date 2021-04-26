@@ -49,9 +49,9 @@ class Profile(models.Model):
         SIZE = 250, 250
 
         if self.picture:
-            pic = Image.open(self.picture.path)
+            pic = Image.open(self.picture.name)
             pic.thumbnail(SIZE, Image.LANCZOS)
-            pic.save(self.picture.path)
+            pic.save(self.picture.name)
 
     def __str__(self):
         return self.user.username
