@@ -13,6 +13,7 @@ WORKDIR /djfans
 
 COPY ./entrypoint.sh /
 
+CMD [ "python", "initadmin.py"]
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
 
