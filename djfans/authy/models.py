@@ -53,7 +53,7 @@ class Profile(models.Model):
             pic = Image.open(self.picture)
             pic.thumbnail(SIZE, Image.LANCZOS)
             fh = storage.open(self.picture.name, "w")
-            format = 'jpg'
+            format = 'JPG'
             pic.save(fh, format)
             fh.close()
 
