@@ -9,12 +9,12 @@ python manage.py migrate --noinput
 
 python manage.py createcachetable
 
-if os.environ['$DJANGO_SUPERUSER_USERNAME']
+if ['$DJANGO_SUPERUSER_USERNAME']
 then
     python manage.py createsuperuser \
         --noinput \
-        --username os.environ['$DJANGO_SUPERUSER_USERNAME'] \
-        --email os.environ['$DJANGO_SUPERUSER_USERNAME']
+        --username ['$DJANGO_SUPERUSER_USERNAME'] \
+        --email ['$DJANGO_SUPERUSER_USERNAME']
 fi
 
 
