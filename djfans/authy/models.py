@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-from django.db.models.signals import post_save
 from django.core.files.storage import default_storage as storage
+from django.db.models.signals import post_save
 
 from PIL import Image
 from django.conf import settings
@@ -47,14 +46,16 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+        SIZE = 250, 250
 
         if self.picture:
-            size = 250, 250
             pic = Image.open(self.picture)
-            pic.thumbnail(size, Image.ANTIALIAS)
-            fh = storage.open(self.picture.name, "wb")
-            pic.save(fh, 'jpg')
-            fh.close()
+            pic.thumbnail(SIZE, Image.LANCZOS)
+            storage_path = storage.open(self.picture.name, "wb")
+            pic.save(storage_path, 'jpg')
+            storage_path.close()
+
+            return self
 
     def __str__(self):
         return self.user.username
