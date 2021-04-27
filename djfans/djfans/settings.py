@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # provider
     'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
