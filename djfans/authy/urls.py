@@ -8,7 +8,7 @@ urlpatterns = [
     path('profile/edit', EditProfile, name='edit-profile'),
     path('signup/', Signup, name='signup'),
     path('login/', authViews.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('githubin/', include('allauth.urls')),
+    path('socialin/', include('allauth.urls')),
     path('logout/', authViews.LogoutView.as_view(),
          {'next_page': 'index'}, name='logout'),
     path('changepassword/', PasswordChange, name='change_password'),
