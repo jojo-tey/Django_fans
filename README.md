@@ -10,6 +10,13 @@
 
 
 
+### Test
+
+git clone https://github.com/jojo-tey/Django_fans.git
+cd Django_fans/djfans
+python manage.py makemigrations --settings=djfans.local
+python manage.py migrate --settings=djfans.local
+python manage.py runserver --settings=djfans.local
 
 
 

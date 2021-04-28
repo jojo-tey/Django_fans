@@ -1,10 +1,9 @@
-from .base import *
+from .settings import *
 
 
 # Running env - Local
 
-# key for test = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
-SECRET_KEY = 'Paste the test key'
+SECRET_KEY = '-nro!j**h$!c=d(*r30+u46g$^(oge1!*9ymb4v8ks9%mwyim%'
 DEBUG = True
 ALLOWED_HOSTS = []
 

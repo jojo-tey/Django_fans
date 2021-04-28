@@ -1,4 +1,4 @@
-from .base import *
+from .settings import *
 
 
 # Running env - Docker
@@ -21,7 +21,9 @@ DATABASES = {
     }
 }
 
+
 # AWS Setting
+
 AWS_STORAGE_BUCKET_NAME = 'djfans-static'
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
