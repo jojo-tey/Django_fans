@@ -87,6 +87,9 @@ Resource management through Terraform makes it easy to increase/decrease, versio
 Stage-by-stage setup through the pipeline.
 Set to automatically build and deploy at the same time as commit.
 
+- Https redirect
+Redirecting to https by placing an application load balancer between the EC2 instance and the internet gateway
+
 
 ### Screenshot
 
