@@ -18,7 +18,8 @@ I plan to automate deployment by running Jenkins containers on the server.
 
 1. git clone https://github.com/jojo-tey/Django_fans.git
 2. cd Django_fans/djfans
-3. Disable product part in settings.py 
+4. pip install -r requirements.txt
+5. Disable product part in settings.py 
 ```
 ########################################
 # Disable this part for local running
@@ -32,9 +33,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 ########################################
 ```
-4. python manage.py makemigrations --settings=djfans.local
-5. python manage.py migrate --settings=djfans.local
-6. python manage.py runserver --settings=djfans.local
+6. python manage.py makemigrations --settings=djfans.local
+7. python manage.py migrate --settings=djfans.local
+8. python manage.py runserver --settings=djfans.local
 
 
 ## Focused point
