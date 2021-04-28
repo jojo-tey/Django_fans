@@ -10,20 +10,24 @@
 
 
 
-### Test
+### Test command
 
-git clone https://github.com/jojo-tey/Django_fans.git
-cd Django_fans/djfans
-python manage.py makemigrations --settings=djfans.local
-python manage.py migrate --settings=djfans.local
-python manage.py runserver --settings=djfans.local
+1. git clone https://github.com/jojo-tey/Django_fans.git
+2. cd Django_fans/djfans
+3. Disable product part in settings.py 
+```
+########################################
+# Disable this part for local running
+
+# Running env - Docker
+
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = os.environ['DEBUG']
+ALLOWED_HOSTS = ['*']
+########################################
+```
+4. python manage.py makemigrations --settings=djfans.local
+5. python manage.py migrate --settings=djfans.local
+6. python manage.py runserver --settings=djfans.local
 
 
-
-- 이슈와 해결방법
-
-포스팅이 멀티아규먼트를 뱉어 에러 발생
-구독시점보다 전 포스팅 보이지 않음
-
-
-이슈 확인 - 도커 랑 연동 끝

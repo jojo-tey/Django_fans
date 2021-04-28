@@ -2,8 +2,8 @@
 
 
 
-python manage.py makemigrations --settings=djfans.prod
-python manage.py migrate --settings=djfans.prod --noinput
-python manage.py collectstatic --settings=djfans.prod --noinput
+python manage.py makemigrations 
+python manage.py migrate --noinput
+python manage.py collectstatic --noinput
 
 gunicorn djfans.wsgi:application --bind 0.0.0.0:8000
