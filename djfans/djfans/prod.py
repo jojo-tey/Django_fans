@@ -1,11 +1,4 @@
 from .settings import *
-import os
-
-# Running env - Docker
-
-SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = os.environ['DEBUG']
-ALLOWED_HOSTS = ['*']
 
 
 # Database - AWS RDS

@@ -18,6 +18,15 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
+########################################
+# Disable this part for local running
+
+# Running env - Docker
+
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = os.environ['DEBUG']
+ALLOWED_HOSTS = ['*']
+########################################
 
 # Application definition
 
