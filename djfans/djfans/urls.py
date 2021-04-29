@@ -28,6 +28,7 @@ from post.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('authy.urls')),
+    path('accounts/', include('allauth.urls')),
     path('sub/', include('tier.urls')),
     path('post/', include('post.urls')),
     path('notifications/', include('notifications.urls')),
