@@ -74,20 +74,20 @@ Packaging the app in container, build automation by linking github and docker hu
 
 ![Image](/images/diagram.png)
 
-- Secret value management
+- Secret value management <br>
 By setting the environment variable reference in the container, it is possible to manage secret value management on the server side at once. 
 
-- VPC and Security group
+- VPC and Security group <br>
 Secure data storage by separating the database and the S3 bucket from the EC2 instance and placing it in a different security group.
 
-- Infrastructure as code
+- Infrastructure as code <br>
 Resource management through Terraform makes it easy to increase/decrease, version control, and reuse servers.
 
-- CI/CD automation (Working on it)
+- CI/CD automation (Working on it) <br>
 Stage-by-stage setup through the pipeline.
 Set to automatically build and deploy at the same time as commit.
 
-- Https redirect
+- Https redirect <br>
 Redirecting to https by placing an application load balancer between the EC2 instance and the internet gateway
 
 
