@@ -9,11 +9,11 @@ I created a simple onlyfans site using Django. During the deployment process, it
 I plan to automate deployment by running Jenkins containers on the server.
 
 ---
-
+<!-- 
 ## [Demopage Link](https://taeheejo.link)
 - ID : tester
 - PW : tester
-
+ -->
 ## Test command
 
 1. git clone https://github.com/jojo-tey/Django_fans.git
